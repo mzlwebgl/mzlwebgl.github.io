@@ -1,16 +1,253 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>mzlwebgl - WebGL Projects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Min Zhongliang — Creative Developer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, Inter, "SF Pro", Roboto, sans-serif;
+            background: #f7f7f7;
+            color: #111;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 60px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        /* HERO SECTION ------------------------------ */
+        .hero {
+            padding: 120px 0 80px;
+            animation: fadeIn 1.2s ease;
+        }
+        .hero-title {
+            font-size: 3.4rem;
+            letter-spacing: 4px;
+            font-weight: 800;
+        }
+        .hero-subtitle {
+            margin-top: 20px;
+            font-size: 1.25rem;
+            opacity: 0.75;
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            margin-top: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 26px;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-right: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-primary {
+            background: #111;
+            color: #fff;
+        }
+        .btn-primary:hover { background: #333; }
+        .btn-outline {
+            border: 2px solid #111;
+        }
+        .btn-outline:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        /* GENERAL SECTION ------------------------------ */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .section-text {
+            opacity: 0.8;
+            font-size: 1.08rem;
+            max-width: 800px;
+        }
+
+        /* PORTFOLIO HUB ------------------------------ */
+        .portfolio-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        @media (min-width: 900px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .portfolio-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 26px;
+            border: 1px solid #ddd;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            border-color: #111;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .portfolio-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .portfolio-desc {
+            margin-top: 6px;
+            font-size: 0.93rem;
+            opacity: 0.72;
+        }
+
+        .portfolio-tags {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            opacity: 0.55;
+        }
+
+        /* CONTACT ------------------------------ */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* ANIMATION ------------------------------ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
+
 <body>
-  <h1>mzlwebgl WebGL Projects</h1>
-  <p>欢迎来到我的 WebGL 项目首页。</p>
-  <ul>
-    <li><a href="/matchingpuzzle3d/">MatchingPuzzle3D（点击进入游戏）</a></li>
-    <!-- 以后你可以在这里继续加其它项目 -->
-  </ul>
+
+    <!-- HERO -->
+    <div class="container hero">
+        <h1 class="hero-title">MIN ZHONGLIANG</h1>
+        <p class="hero-subtitle">
+            Creative Developer specializing in Unity, Three.js, WebGL, XR, and AI-driven systems.
+            I build interactive 3D experiences and intelligent tools that merge engineering precision with modern design.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#portfolio" class="btn btn-primary">Explore Portfolio</a>
+            <a href="#contact" class="btn btn-outline">Download Resume</a>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="container">
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-text">
+                I’m Min Zhongliang — a multidisciplinary creative developer with 6+ years of experience building
+                real-time 3D systems, AI-powered applications, WebGL/Three.js environments, XR prototypes, and 
+                intelligent automation tools. My work blends engineering, product thinking, and design-driven 
+                execution to craft polished interactive experiences end-to-end.
+            </p>
+        </section>
+    </div>
+
+    <!-- PORTFOLIO HUB -->
+    <div class="container">
+        <section id="portfolio">
+            <h2 class="section-title">Featured Works</h2>
+
+            <p class="section-text">A selection of projects across AI, 3D, Unity, automation, and interactive systems.</p>
+
+            <div class="portfolio-grid">
+
+                <div class="portfolio-card" onclick="location.href='/hci'">
+                    <div class="portfolio-title">Health-HCI PhD Agent</div>
+                    <div class="portfolio-desc">Global HCI/Health PhD intelligence aggregation system.</div>
+                    <div class="portfolio-tags">AI · Automation · Web</div>
+                </div>
+
+                <div class="portfolio-card" onclick="location.href='/excel'">
+                    <div class="portfolio-title">Excel Annotation Tool</div>
+                    <div class="portfolio-desc">LLM-based rule annotation engine for enterprise data.</div>
+                    <div class="portfolio-tags">AI · Python · Data</div>
+                </div>
+
+                <div class="portfolio-card" onclick="location.href='/agent'">
+                    <div class="portfolio-title">Online Annotation Platform</div>
+                    <div class="portfolio-desc">Collaborative annotation platform with real-time features.</div>
+                    <div class="portfolio-tags">Web · AI · Collaboration</div>
+                </div>
+
+                <div class="portfolio-card" onclick="location.href='/unity-quest'">
+                    <div class="portfolio-title">Unity Open-World Quest System</div>
+                    <div class="portfolio-desc">Quest, minimap, NPC interaction + UI system.</div>
+                    <div class="portfolio-tags">Unity · C# · Game Dev</div>
+                </div>
+
+                <div class="portfolio-card" onclick="location.href='/xr-lab'">
+                    <div class="portfolio-title">XR Interaction Lab</div>
+                    <div class="portfolio-desc">Experiments with WebXR and real-time 3D UX.</div>
+                    <div class="portfolio-tags">XR · Three.js · WebGL</div>
+                </div>
+
+                <div class="portfolio-card" onclick="location.href='/ai-toolkit'">
+                    <div class="portfolio-title">AI Utility Toolkit</div>
+                    <div class="portfolio-desc">A set of LLM-powered productivity and automation tools.</div>
+                    <div class="portfolio-tags">AI · LLM · Tools</div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="container">
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-text">
+                Interested in collaboration or research?  
+                Feel free to reach out.
+            </p>
+
+            <p class="section-text" style="margin-top:20px;">
+                ✉ Email: <b>contact@yimingfucha.com</b><br>
+                🔗 GitHub: <b>github.com/chacha622</b><br>
+                🔗 Portfolio: <b>https://yimingfucha.com</b>
+            </p>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        Designed & Built by Min Zhongliang · © 2025
+    </footer>
+
 </body>
 </html>
