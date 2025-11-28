@@ -28,11 +28,9 @@
             padding-top: 60px;
         }
 
-        h1, h2, h3 {
-            font-weight: 700;
-        }
+        h1, h2, h3 { font-weight: 700; }
 
-        /* HERO SECTION ------------------------------ */
+        /* HERO ------------------------------ */
         .hero {
             padding: 120px 0 80px;
             animation: fadeIn 1.2s ease;
@@ -65,7 +63,9 @@
             background: #111;
             color: #fff;
         }
-        .btn-primary:hover { background: #333; }
+        .btn-primary:hover {
+            background: #333;
+        }
         .btn-outline {
             border: 2px solid #111;
         }
@@ -74,7 +74,7 @@
             color: #fff;
         }
 
-        /* GENERAL SECTION ------------------------------ */
+        /* SECTIONS ------------------------------ */
         section {
             padding: 80px 0;
         }
@@ -88,52 +88,68 @@
             max-width: 800px;
         }
 
-        /* PORTFOLIO HUB ------------------------------ */
-        .portfolio-grid {
+        /* PROJECT GRID ------------------------------ */
+        .project-grid {
             margin-top: 40px;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-        @media (min-width: 900px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
         }
 
-        .portfolio-card {
-            background: #fff;
-            border-radius: 14px;
-            padding: 26px;
+        .project-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
             border: 1px solid #ddd;
-            transition: 0.25s;
+            border-radius: 16px;
+            padding: 22px;
             cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            perspective: 900px;
         }
 
-        .portfolio-card:hover {
-            transform: translateY(-6px);
-            border-color: #111;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        .project-card:hover {
+            transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+            box-shadow: 0 20px 32px rgba(0,0,0,0.15);
         }
 
-        .portfolio-title {
+        /* 图标 */
+        .project-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 14px;
+        }
+
+        /* 标题 & 描述 */
+        .project-title {
             font-size: 1.15rem;
             font-weight: 700;
         }
 
-        .portfolio-desc {
+        .project-desc {
             margin-top: 6px;
-            font-size: 0.93rem;
-            opacity: 0.72;
+            opacity: 0.75;
+            font-size: 0.92rem;
+            min-height: 40px;
         }
 
-        .portfolio-tags {
+        /* 标签 */
+        .project-tags {
             margin-top: 12px;
-            font-size: 0.8rem;
-            opacity: 0.55;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
-        /* CONTACT ------------------------------ */
+        .tag {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: #111;
+            color: #fff;
+            border-radius: 6px;
+            opacity: 0.85;
+        }
+
         footer {
             padding: 40px 0;
             text-align: center;
@@ -141,7 +157,6 @@
             font-size: 0.9rem;
         }
 
-        /* ANIMATION ------------------------------ */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -178,52 +193,13 @@
         </section>
     </div>
 
-    <!-- PORTFOLIO HUB -->
+    <!-- PROJECTS -->
     <div class="container">
         <section id="portfolio">
-            <h2 class="section-title">Featured Works</h2>
+            <h2 class="section-title">Projects</h2>
+            <p class="section-text">Explore my interactive 3D, AI, XR, and intelligent developer tools.</p>
 
-            <p class="section-text">A selection of projects across AI, 3D, Unity, automation, and interactive systems.</p>
-
-            <div class="portfolio-grid">
-
-                <div class="portfolio-card" onclick="location.href='/hci'">
-                    <div class="portfolio-title">Health-HCI PhD Agent</div>
-                    <div class="portfolio-desc">Global HCI/Health PhD intelligence aggregation system.</div>
-                    <div class="portfolio-tags">AI · Automation · Web</div>
-                </div>
-
-                <div class="portfolio-card" onclick="location.href='/excel'">
-                    <div class="portfolio-title">Excel Annotation Tool</div>
-                    <div class="portfolio-desc">LLM-based rule annotation engine for enterprise data.</div>
-                    <div class="portfolio-tags">AI · Python · Data</div>
-                </div>
-
-                <div class="portfolio-card" onclick="location.href='/agent'">
-                    <div class="portfolio-title">Online Annotation Platform</div>
-                    <div class="portfolio-desc">Collaborative annotation platform with real-time features.</div>
-                    <div class="portfolio-tags">Web · AI · Collaboration</div>
-                </div>
-
-                <div class="portfolio-card" onclick="location.href='/unity-quest'">
-                    <div class="portfolio-title">Unity Open-World Quest System</div>
-                    <div class="portfolio-desc">Quest, minimap, NPC interaction + UI system.</div>
-                    <div class="portfolio-tags">Unity · C# · Game Dev</div>
-                </div>
-
-                <div class="portfolio-card" onclick="location.href='/xr-lab'">
-                    <div class="portfolio-title">XR Interaction Lab</div>
-                    <div class="portfolio-desc">Experiments with WebXR and real-time 3D UX.</div>
-                    <div class="portfolio-tags">XR · Three.js · WebGL</div>
-                </div>
-
-                <div class="portfolio-card" onclick="location.href='/ai-toolkit'">
-                    <div class="portfolio-title">AI Utility Toolkit</div>
-                    <div class="portfolio-desc">A set of LLM-powered productivity and automation tools.</div>
-                    <div class="portfolio-tags">AI · LLM · Tools</div>
-                </div>
-
-            </div>
+            <div id="project-grid" class="project-grid"></div>
         </section>
     </div>
 
@@ -244,10 +220,57 @@
         </section>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         Designed & Built by Min Zhongliang · © 2025
     </footer>
+
+    <script>
+        /* 你只需要编辑这里，就可以添加无限项目 */
+        const PROJECTS = [
+          {
+            title: "Matching Puzzle 3D",
+            desc: "Unity WebGL — Casual 3D Puzzle Game",
+            icon: "/icons/matching3d.png",
+            tags: ["Unity", "WebGL", "Game"],
+            url: "https://minzl.com/MatchingPuzzle3D/"
+          },
+          {
+            title: "Health-HCI PhD Agent",
+            desc: "Daily HCI/Health PhD intelligence aggregator",
+            icon: "/icons/hci.png",
+            tags: ["AI", "Automation", "Web"],
+            url: "/hci"
+          },
+          {
+            title: "Excel Annotation Engine",
+            desc: "LLM-based enterprise rule annotation system",
+            icon: "/icons/excel.png",
+            tags: ["AI", "Python", "LLM"],
+            url: "/excel"
+          },
+          {
+            title: "Unity Quest System",
+            desc: "Open-world quest + NPC + minimap system",
+            icon: "/icons/unity.png",
+            tags: ["Unity", "C#", "Game"],
+            url: "/unity-quest"
+          }
+        ];
+
+        const grid = document.getElementById("project-grid");
+
+        grid.innerHTML = PROJECTS.map(p => `
+          <div class="project-card" onclick="location.href='${p.url}'">
+              <img class="project-icon" src="${p.icon}" />
+              <div class="project-title">${p.title}</div>
+              <div class="project-desc">${p.desc}</div>
+
+              <div class="project-tags">
+                  ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+              </div>
+          </div>
+        `).join("");
+    </script>
 
 </body>
 </html>
