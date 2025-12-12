@@ -1,276 +1,655 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Min Zhongliang — Creative Developer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zhongliang Min | Senior C# / Unity WebGL Engineer</title>
+  <meta name="description" content="Zhongliang Min – Senior C# / Unity WebGL Engineer. Commercial-grade interactive systems across C#, Unity, WebGL, Cloudflare Workers, and AI." />
+  <meta name="theme-color" content="#0b0c10" />
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --panel:#10131a;
+      --panel2:#0f1420;
+      --text:#e8ebf2;
+      --muted:#a7b0c0;
+      --line:#202634;
+      --brand:#7aa2ff;
+      --brand2:#79ffe1;
+      --warn:#ffcc66;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --max: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(122,162,255,.14), transparent 60%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(121,255,225,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "PingFang SC","Microsoft YaHei", sans-serif;
+      letter-spacing: .2px;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 28px 18px 80px;}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,12,16,.62);
+      border-bottom:1px solid rgba(32,38,52,.8);
+    }
+    .topbar .inner{
+      max-width:var(--max); margin:0 auto; padding: 14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width: 220px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(121,255,225,.85));
+      box-shadow: 0 10px 25px rgba(122,162,255,.18);
+    }
+    .brand strong{font-size:14px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+    nav{
+      display:flex; gap:18px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      font-size:13px; color:var(--muted);
+      padding:8px 10px; border-radius: 12px;
+      border:1px solid transparent;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color: rgba(122,162,255,.25);
+      background: rgba(16,19,26,.55);
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .hero{
+      margin-top: 18px;
+      padding: 34px 26px;
+      border:1px solid rgba(32,38,52,.9);
+      background: linear-gradient(180deg, rgba(16,19,26,.9), rgba(16,19,26,.55));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 280px at 20% 10%, rgba(122,162,255,.18), transparent 55%),
+                  radial-gradient(520px 260px at 85% 20%, rgba(121,255,225,.14), transparent 58%);
+      pointer-events:none;
+    }
+    .hero .grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .hero .grid{grid-template-columns: 1fr; }
+      .brand{min-width:auto}
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, Inter, "SF Pro", Roboto, sans-serif;
-            background: #f7f7f7;
-            color: #111;
-            line-height: 1.6;
-        }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; color:var(--muted);
+      padding: 7px 10px;
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(15,20,32,.6);
+      border-radius: 999px;
+    }
+    .dot{width:7px;height:7px;border-radius:99px;background:var(--brand2)}
+    h1{
+      margin: 14px 0 10px;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: -.6px;
+    }
+    .subtitle{
+      font-size: 15px;
+      line-height:1.7;
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 0 18px;
+    }
+    .roleline{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin: 0 0 14px;
+    }
+    .pill{
+      font-size:12px;
+      color: rgba(232,235,242,.92);
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(15,20,32,.55);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 10px;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(16,19,26,.7);
+      border:1px solid rgba(32,38,52,.95);
+    }
+    .btn:hover{ border-color: rgba(122,162,255,.35); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(121,255,225,.78));
+      color: #061018;
+      border-color: transparent;
+    }
+    .btn.primary:hover{ filter: brightness(1.02); }
+    .btn.ghost{
+      background: transparent;
+    }
+    .metaCard{
+      position:relative;
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(15,20,32,.55);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .metaCard h3{
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing:.25px;
+    }
+    .kv{
+      display:grid; grid-template-columns: 90px 1fr;
+      gap: 8px 12px;
+      font-size: 13px;
+    }
+    .k{color: var(--muted)}
+    .v a{color: rgba(122,162,255,.95)}
+    .v a:hover{text-decoration:underline}
 
-        a { text-decoration: none; color: inherit; }
+    section{margin-top: 20px;}
+    .sectionTitle{
+      display:flex; align-items:baseline; justify-content:space-between;
+      margin: 26px 2px 12px;
+      gap: 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-        .container {
-            width: 92%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding-top: 60px;
-        }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 1020px){
+      .cards{grid-template-columns: repeat(2, 1fr);}
+    }
+    @media (max-width: 560px){
+      .cards{grid-template-columns: 1fr;}
+    }
+    .card{
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(16,19,26,.55);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.2);
+      min-height: 148px;
+    }
+    .card h3{margin:0 0 8px; font-size: 14px;}
+    .card p{margin:0; color: var(--muted); font-size: 13px; line-height:1.65;}
+    .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px;}
+    .tag{font-size:11px; color: var(--muted); border:1px solid rgba(32,38,52,.85); padding: 6px 8px; border-radius: 999px; background: rgba(15,20,32,.5);}
 
-        h1, h2, h3 { font-weight: 700; }
+    .projectsToolbar{
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+    .filters{display:flex; flex-wrap:wrap; gap:8px;}
+    .chip{
+      font-size:12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(15,20,32,.55);
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip[data-active="true"]{
+      color: var(--text);
+      border-color: rgba(122,162,255,.35);
+      background: rgba(122,162,255,.10);
+    }
+    .search{
+      flex: 1;
+      min-width: 220px;
+      max-width: 360px;
+    }
+    .search input{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(32,38,52,.9);
+      background: rgba(15,20,32,.55);
+      color: var(--text);
+      outline:none;
+      font-size: 13px;
+    }
+    .search input::placeholder{color: rgba(167,176,192,.75)}
+    .projectGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 980px){ .projectGrid{grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 560px){ .projectGrid{grid-template-columns: 1fr;} }
 
-        /* HERO ------------------------------ */
-        .hero {
-            padding: 120px 0 80px;
-            animation: fadeIn 1.2s ease;
-        }
-        .hero-title {
-            font-size: 3.4rem;
-            letter-spacing: 4px;
-            font-weight: 800;
-        }
-        .hero-subtitle {
-            margin-top: 20px;
-            font-size: 1.25rem;
-            opacity: 0.75;
-            max-width: 700px;
-        }
+    .project{
+      border:1px solid rgba(32,38,52,.9);
+      background: linear-gradient(180deg, rgba(16,19,26,.72), rgba(16,19,26,.45));
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.22);
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .project .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .project h3{margin:0; font-size: 14px;}
+    .badge{
+      font-size:11px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(32,38,52,.85);
+      background: rgba(15,20,32,.55);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .project p{margin:0; color: var(--muted); font-size: 13px; line-height:1.65;}
+    .project .links{display:flex; gap:10px; flex-wrap:wrap; margin-top: 2px;}
+    .link{
+      font-size:12px; color: rgba(122,162,255,.95);
+      border:1px solid rgba(122,162,255,.18);
+      background: rgba(122,162,255,.08);
+      padding: 7px 10px;
+      border-radius: 12px;
+    }
+    .link:hover{border-color: rgba(122,162,255,.35);}
+    .mutelink{
+      font-size:12px; color: var(--muted);
+      border:1px solid rgba(32,38,52,.85);
+      background: rgba(15,20,32,.45);
+      padding: 7px 10px;
+      border-radius: 12px;
+    }
 
-        .hero-buttons {
-            margin-top: 40px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 26px;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-right: 14px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .btn-primary {
-            background: #111;
-            color: #fff;
-        }
-        .btn-primary:hover {
-            background: #333;
-        }
-        .btn-outline {
-            border: 2px solid #111;
-        }
-        .btn-outline:hover {
-            background: #111;
-            color: #fff;
-        }
-
-        /* SECTIONS ------------------------------ */
-        section {
-            padding: 80px 0;
-        }
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        .section-text {
-            opacity: 0.8;
-            font-size: 1.08rem;
-            max-width: 800px;
-        }
-
-        /* PROJECT GRID ------------------------------ */
-        .project-grid {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 28px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            border: 1px solid #ddd;
-            border-radius: 16px;
-            padding: 22px;
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            perspective: 900px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
-            box-shadow: 0 20px 32px rgba(0,0,0,0.15);
-        }
-
-        /* 图标 */
-        .project-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 14px;
-        }
-
-        /* 标题 & 描述 */
-        .project-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-
-        .project-desc {
-            margin-top: 6px;
-            opacity: 0.75;
-            font-size: 0.92rem;
-            min-height: 40px;
-        }
-
-        /* 标签 */
-        .project-tags {
-            margin-top: 12px;
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            font-size: 0.75rem;
-            padding: 3px 8px;
-            background: #111;
-            color: #fff;
-            border-radius: 6px;
-            opacity: 0.85;
-        }
-
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    .footer{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(32,38,52,.9);
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .small{font-size:12px; color: var(--muted);}
+  </style>
 </head>
 
 <body>
-
-    <!-- HERO -->
-    <div class="container hero">
-        <h1 class="hero-title">MIN ZHONGLIANG</h1>
-        <p class="hero-subtitle">
-            Creative Developer specializing in Unity, Three.js, WebGL, XR, and AI-driven systems.
-            I build interactive 3D experiences and intelligent tools that merge engineering precision with modern design.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#portfolio" class="btn btn-primary">Explore Portfolio</a>
-            <a href="#contact" class="btn btn-outline">Download Resume</a>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Zhongliang Min</strong>
+          <span>Senior C# / Unity WebGL Engineer</span>
         </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a href="/assets/Zhongliang_Min_Resume.pdf" download>Resume PDF</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- ABOUT -->
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-text">
-                I’m Min Zhongliang — a multidisciplinary creative developer with 6+ years of experience building
-                real-time 3D systems, AI-powered applications, WebGL/Three.js environments, XR prototypes, and 
-                intelligent automation tools. My work blends engineering, product thinking, and design-driven 
-                execution to craft polished interactive experiences end-to-end.
-            </p>
-        </section>
-    </div>
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="grid">
+        <div>
+          <div class="kicker"><span class="dot"></span> Recruitment-first portfolio · System-level engineering</div>
+
+          <h1>Zhongliang Min</h1>
+
+          <div class="roleline">
+            <span class="pill">C# High-Concurrency TCP Server</span>
+            <span class="pill">Unity Client Architecture</span>
+            <span class="pill">Commercial Unity WebGL</span>
+            <span class="pill">Cloudflare Workers API Gateway</span>
+            <span class="pill">AR (Production-ready)</span>
+            <span class="pill" title="Familiar / exposure level">VR (Familiar)</span>
+          </div>
+
+          <p class="subtitle">
+            I build production-ready interactive systems — from <b>C# server engineering</b> and <b>Unity frameworks</b>,
+            to <b>commercial Unity WebGL delivery</b> and <b>edge API gateway</b> on Cloudflare Workers. I prioritize
+            scalable architecture, performance, and real-world deployment.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#projects">View Selected Projects</a>
+            <a class="btn" href="/assets/Zhongliang_Min_Resume.pdf" download>Download Resume (PDF)</a>
+            <a class="btn ghost" href="#contact">Contact</a>
+          </div>
+
+          <p class="small" style="margin:14px 0 0;">
+            Preferred roles: Senior Unity Engineer · WebGL Engineer · Interactive Systems Engineer · C# Systems Engineer
+          </p>
+        </div>
+
+        <aside class="metaCard" aria-label="Quick info">
+          <h3>Quick Info</h3>
+          <div class="kv">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:mzlmailen@gmail.com">mzlmailen@gmail.com</a></div>
+
+            <div class="k">Focus</div>
+            <div class="v">C# · Unity · WebGL · Workers · AR</div>
+
+            <div class="k">Strength</div>
+            <div class="v">System architecture · performance · deployment</div>
+
+            <div class="k">Also</div>
+            <div class="v">RESTful API · JS/CSS/HTML · Three.js (engineering-level)</div>
+          </div>
+
+          <div style="margin-top:14px; border-top:1px solid rgba(32,38,52,.9); padding-top:12px;">
+            <div class="small" style="margin-bottom:8px;">Optional: Interactive background</div>
+            <button class="btn" type="button" onclick="alert('这里可接 Three.js 背景（建议默认静态/可开关，避免影响招聘阅读）。')">
+              Toggle 3D Background (Optional)
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section id="expertise">
+      <div class="sectionTitle">
+        <h2>Core Expertise</h2>
+        <p>Strength-weighted (highlight what I’m best at)</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>C# System Engineering</h3>
+          <p>High-concurrency TCP servers, custom protocols, validation, compression & encryption. Built for reliability and throughput.</p>
+          <div class="tagRow">
+            <span class="tag">TCP Server</span><span class="tag">Protocol</span><span class="tag">Perf</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Unity Client Architecture</h3>
+          <p>Reusable client frameworks, modular systems, tooling, and performance-oriented runtime design for games and general apps.</p>
+          <div class="tagRow">
+            <span class="tag">Framework</span><span class="tag">Tooling</span><span class="tag">Gameplay + Apps</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Commercial Unity WebGL</h3>
+          <p>Custom WebGL template, JS↔C# bridge, loader pipeline, optimization and global deployment for real-world WebGL products.</p>
+          <div class="tagRow">
+            <span class="tag">Custom Template</span><span class="tag">JS Bridge</span><span class="tag">CDN Deploy</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Cloudflare Workers API Gateway</h3>
+          <p>Edge API gateway with routing, auth, middleware, unified response format. Designed for multi-project product matrices.</p>
+          <div class="tagRow">
+            <span class="tag">Auth</span><span class="tag">Middleware</span><span class="tag">Edge</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- PROJECTS -->
-    <div class="container">
-        <section id="portfolio">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-text">Explore my interactive 3D, AI, XR, and intelligent developer tools.</p>
+    <section id="projects">
+      <div class="sectionTitle">
+        <h2>Selected Projects</h2>
+        <p>High-signal case studies (system ownership + impact)</p>
+      </div>
 
-            <div id="project-grid" class="project-grid"></div>
-        </section>
-    </div>
+      <div class="projectsToolbar">
+        <div class="filters" id="filters">
+          <div class="chip" data-key="all" data-active="true">All</div>
+          <div class="chip" data-key="csharp">C# Systems</div>
+          <div class="chip" data-key="unity">Unity</div>
+          <div class="chip" data-key="webgl">WebGL</div>
+          <div class="chip" data-key="workers">Workers</div>
+          <div class="chip" data-key="ai">AI</div>
+          <div class="chip" data-key="ar">AR</div>
+        </div>
+        <div class="search">
+          <input id="q" placeholder="Search projects (e.g., WebGL, gateway, AR, streaming)..." />
+        </div>
+      </div>
+
+      <div class="projectGrid" id="projectGrid"></div>
+
+      <p class="small" style="margin-top:10px;">
+        Tip: 每个项目建议后续做独立详情页（/projects/xxx.html），按“问题→挑战→架构→你负责→结果”讲清楚，转化率最高。
+      </p>
+    </section>
+
+    <!-- EXPERIENCE (preview) -->
+    <section id="experience">
+      <div class="sectionTitle">
+        <h2>Experience Snapshot</h2>
+        <p>System ownership over task lists</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>2024 · Medical AR (Unity / C#)</h3>
+          <p>Core feature development for AR dental model recognition & tracking, enabling 6DOF alignment and clinical visualization.</p>
+          <div class="tagRow"><span class="tag">AR</span><span class="tag">Tracking</span><span class="tag">Unity</span></div>
+        </div>
+        <div class="card">
+          <h3>2021–2023 · Games / XR / AI</h3>
+          <p>Led client-side architecture and core systems across multiple commercial projects; built AI digital human interaction systems.</p>
+          <div class="tagRow"><span class="tag">Framework</span><span class="tag">AI</span><span class="tag">XR</span></div>
+        </div>
+        <div class="card">
+          <h3>2019–2021 · Hardware + Interactive</h3>
+          <p>Unity client + C# hardware integration (serial/TCP/UDP), multi-screen interactive systems for banks and exhibitions.</p>
+          <div class="tagRow"><span class="tag">Serial</span><span class="tag">UDP</span><span class="tag">Installations</span></div>
+        </div>
+        <div class="card">
+          <h3>Now · Global Delivery Mindset</h3>
+          <p>Cloudflare Workers + R2 + CDN deployment patterns for fast global access of WebGL and multi-project product matrices.</p>
+          <div class="tagRow"><span class="tag">Workers</span><span class="tag">R2</span><span class="tag">CDN</span></div>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
-    <div class="container">
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-text">
-                Interested in collaboration or research?  
-                Feel free to reach out.
-            </p>
+    <section id="contact">
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <p>Let’s discuss roles and system architecture</p>
+      </div>
 
-            <p class="section-text" style="margin-top:20px;">
-                ✉ Email: <b>contact@yimingfucha.com</b><br>
-                🔗 GitHub: <b>github.com/chacha622</b><br>
-                🔗 Portfolio: <b>https://yimingfucha.com</b>
-            </p>
-        </section>
-    </div>
+      <div class="card" style="min-height:auto;">
+        <p style="margin:0 0 10px;">
+          Email: <a href="mailto:mzlmailen@gmail.com" style="color: rgba(122,162,255,.95);">mzlmailen@gmail.com</a>
+        </p>
+        <p style="margin:0; color: var(--muted);">
+          You can also add: LinkedIn / GitHub links here (recommended).
+        </p>
+      </div>
+    </section>
 
-    <footer>
-        Designed & Built by Min Zhongliang · © 2025
+    <footer class="footer">
+      <div>© <span id="y"></span> Zhongliang Min · Built for global recruitment</div>
+      <div class="small">Last updated: <span id="d"></span></div>
     </footer>
+  </main>
 
-    <script>
-        /* 你只需要编辑这里，就可以添加无限项目 */
-        const PROJECTS = [
-          {
-            title: "Matching Puzzle 3D",
-            desc: "Unity WebGL — Casual 3D Puzzle Game",
-            icon: "/icons/matching3d.png",
-            tags: ["Unity", "WebGL", "Game"],
-            url: "https://minzl.com/MatchingPuzzle3D/"
-          },
-          {
-            title: "Health-HCI PhD Agent",
-            desc: "Daily HCI/Health PhD intelligence aggregator",
-            icon: "/icons/hci.png",
-            tags: ["AI", "Automation", "Web"],
-            url: "/hci"
-          },
-          {
-            title: "Excel Annotation Engine",
-            desc: "LLM-based enterprise rule annotation system",
-            icon: "/icons/excel.png",
-            tags: ["AI", "Python", "LLM"],
-            url: "/excel"
-          },
-          {
-            title: "Unity Quest System",
-            desc: "Open-world quest + NPC + minimap system",
-            icon: "/icons/unity.png",
-            tags: ["Unity", "C#", "Game"],
-            url: "/unity-quest"
-          }
-        ];
+  <script>
+    // Footer date
+    const now = new Date();
+    document.getElementById('y').textContent = now.getFullYear();
+    document.getElementById('d').textContent = now.toISOString().slice(0,10);
 
-        const grid = document.getElementById("project-grid");
+    // Project data (Replace with your real links / demos)
+    const projects = [
+      {
+        title: "Commercial Unity WebGL Framework",
+        badge: "WebGL · Unity",
+        category: ["webgl","unity"],
+        problem: "Need a production-grade WebGL template, loader, JS bridge, and global deployment pipeline.",
+        solution: "Built a reusable WebGL architecture with custom template, progress/error UX, JS↔C# bridge, and CDN-first deployment.",
+        links: [
+          { label:"Case Study", href:"#", type:"link" },
+          { label:"Live Demo", href:"#", type:"link" },
+        ]
+      },
+      {
+        title: "Cloudflare Workers Unified API Gateway",
+        badge: "Workers · Backend",
+        category: ["workers","csharp"],
+        problem: "Multiple products require unified routing, auth, middleware, and consistent response formats at the edge.",
+        solution: "Designed an enterprise-style API gateway with auth (JWT/API Key), middleware, logging, and multi-project isolation.",
+        links: [
+          { label:"Architecture", href:"#", type:"link" },
+          { label:"Docs", href:"#", type:"link" },
+        ]
+      },
+      {
+        title: "High-Concurrency C# TCP Server",
+        badge: "C# · Systems",
+        category: ["csharp"],
+        problem: "Real-time communication requires stable throughput, protocol design, and robust validation/compression.",
+        solution: "Implemented custom TCP server with protocol, validation, compression, and encryption for reliable sessions.",
+        links: [
+          { label:"Case Study", href:"#", type:"link" },
+        ]
+      },
+      {
+        title: "Medical AR Dental Tracking System",
+        badge: "AR · Unity",
+        category: ["ar","unity"],
+        problem: "Real-time 6DOF alignment of dental models in clinical AR scenarios with stability constraints.",
+        solution: "Delivered core AR features for model recognition/tracking and interactive 3D visualization workflow.",
+        links: [
+          { label:"Case Study", href:"#", type:"link" },
+        ]
+      },
+      {
+        title: "AI Digital Human Interaction System",
+        badge: "AI · Unity",
+        category: ["ai","unity"],
+        problem: "Need streaming conversation, voice interaction, memory, and behavior control to improve engagement.",
+        solution: "Integrated streaming chat/voice pipelines with short+long memory and behavior logic for interactive products.",
+        links: [
+          { label:"System Overview", href:"#", type:"link" },
+        ]
+      },
+      {
+        title: "3D Web / Three.js Exhibition Platform",
+        badge: "3D Web",
+        category: ["webgl"],
+        problem: "Online 3D experiences require performance-aware navigation, media integration, and multi-scene structure.",
+        solution: "Built interactive 3D exhibition experiences with structured scene switching and media controls (engineering-level).",
+        links: [
+          { label:"Showreel", href:"#", type:"mutelink" },
+        ]
+      }
+    ];
 
-        grid.innerHTML = PROJECTS.map(p => `
-          <div class="project-card" onclick="location.href='${p.url}'">
-              <img class="project-icon" src="${p.icon}" />
-              <div class="project-title">${p.title}</div>
-              <div class="project-desc">${p.desc}</div>
+    // Render projects
+    const grid = document.getElementById('projectGrid');
+    const q = document.getElementById('q');
+    const filters = document.getElementById('filters');
+    let active = "all";
 
-              <div class="project-tags">
-                  ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+    function render(){
+      const query = (q.value || "").trim().toLowerCase();
+      const list = projects.filter(p=>{
+        const okFilter = active === "all" ? true : p.category.includes(active);
+        const blob = (p.title + " " + p.badge + " " + p.problem + " " + p.solution).toLowerCase();
+        const okQuery = query ? blob.includes(query) : true;
+        return okFilter && okQuery;
+      });
+
+      grid.innerHTML = list.map(p=>{
+        const links = p.links.map(l=>{
+          const cls = l.type === "link" ? "link" : "mutelink";
+          return `<a class="${cls}" href="${l.href}">${l.label}</a>`;
+        }).join("");
+        return `
+          <article class="project">
+            <div class="top">
+              <div>
+                <h3>${p.title}</h3>
+                <div class="badge">${p.badge}</div>
               </div>
-          </div>
-        `).join("");
-    </script>
+            </div>
+            <p><b>Problem:</b> ${p.problem}</p>
+            <p><b>Solution:</b> ${p.solution}</p>
+            <div class="links">${links}</div>
+          </article>
+        `;
+      }).join("");
 
+      if(list.length === 0){
+        grid.innerHTML = `<div class="card" style="grid-column:1/-1; min-height:auto;">
+          <h3>No results</h3><p>Try another keyword or switch a category.</p>
+        </div>`;
+      }
+    }
+
+    filters.addEventListener('click', (e)=>{
+      const chip = e.target.closest('.chip');
+      if(!chip) return;
+      active = chip.dataset.key;
+      [...filters.querySelectorAll('.chip')].forEach(c=>c.dataset.active = String(c.dataset.key === active));
+      render();
+    });
+
+    q.addEventListener('input', render);
+    render();
+  </script>
 </body>
 </html>
