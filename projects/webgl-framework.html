@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Commercial Unity WebGL Framework – Zhongliang Min</title>
+
+<meta name="description"
+content="Commercial Unity WebGL framework by Zhongliang Min. A reusable WebGL architecture with custom template, loading pipeline, JS-Unity communication, and CDN-based deployment." />
+
+<style>
+:root{
+  --bg:#0b0e14;
+  --panel:#111622;
+  --line:#1e2433;
+  --text:#e6e9f0;
+  --muted:#9aa3b2;
+  --accent:#7aa2ff;
+  --radius:14px;
+  --max:920px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:var(--accent);text-decoration:none}
+.wrap{max-width:var(--max);margin:auto;padding:32px 18px 80px}
+
+/* header */
+header{
+  position:sticky;top:0;
+  background:rgba(11,14,20,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+header .inner{
+  max-width:var(--max);
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+nav a{
+  margin-left:16px;
+  font-size:14px;
+  color:var(--muted);
+}
+nav a:hover{color:var(--text)}
+
+/* sections */
+section{margin-top:36px}
+h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:-.4px;
+}
+h2{
+  font-size:20px;
+  margin-bottom:12px;
+}
+p{
+  margin:8px 0 0;
+  line-height:1.65;
+  color:var(--muted);
+}
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+}
+.meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.meta div{
+  font-size:14px;
+  color:var(--muted);
+}
+.tag{
+  display:inline-block;
+  margin:4px 6px 0 0;
+  padding:4px 8px;
+  font-size:12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--muted);
+}
+
+/* mobile */
+@media(max-width:600px){
+  h1{font-size:24px}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="inner">
+    <strong>
+      <a href="../index.html" style="color:inherit">Zhongliang Min</a>
+    </strong>
+    <nav>
+      <a href="../index.html#projects">Projects</a>
+      <a href="https://cdn.minzl.com/WebGL/Home/data/Zhongliang_Min_Resume.pdf" target="_blank">
+        Resume
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- Title -->
+<section>
+  <h1>Commercial Unity WebGL Framework</h1>
+  <p>
+    A reusable, production-oriented Unity WebGL framework designed for
+    commercial projects, focusing on stability, maintainability, and
+    real-world deployment.
+  </p>
+</section>
+
+<!-- Meta -->
+<section>
+  <div class="card meta">
+    <div><b>Role:</b> Client-side Architecture & WebGL Engineering</div>
+    <div><b>Type:</b> Unity WebGL Framework</div>
+    <div><b>Duration:</b> Long-term iterative development</div>
+    <div><b>Context:</b> Commercial & multi-project use</div>
+  </div>
+</section>
+
+<!-- Background -->
+<section>
+  <h2>Background</h2>
+  <div class="card">
+    <p>
+      Unity WebGL is often used as a quick export target, but in commercial
+      projects it introduces challenges such as long loading times, limited
+      control over the default template, browser-specific behaviors, and
+      difficulties in integrating with modern web infrastructure.
+    </p>
+    <p>
+      This framework was created to address these issues and provide a
+      standardized WebGL foundation that can be reused across multiple
+      products, rather than treating each WebGL build as a one-off delivery.
+    </p>
+  </div>
+</section>
+
+<!-- Responsibilities -->
+<section>
+  <h2>My Responsibilities</h2>
+  <div class="card">
+    <p>
+      I was responsible for the overall client-side architecture of the WebGL
+      solution, including framework design, integration strategy, and
+      deployment workflow.
+    </p>
+    <p>
+      This included defining a consistent project structure, designing the
+      WebGL initialization flow, and ensuring the framework could be reused
+      and adapted across different products with minimal modification.
+    </p>
+  </div>
+</section>
+
+<!-- Solution -->
+<section>
+  <h2>Solution Overview</h2>
+  <div class="card">
+    <p>
+      The framework replaces Unity’s default WebGL template with a custom
+      HTML, CSS, and JavaScript structure, allowing full control over the
+      loading experience, layout, and browser interaction.
+    </p>
+    <p>
+      A structured JavaScript-to-Unity communication layer was introduced to
+      support data exchange, browser feature access, and integration with
+      external services. The overall architecture emphasizes clarity and
+      separation of concerns rather than tightly coupled logic.
+    </p>
+    <p>
+      To support real-world usage, the framework was designed to work smoothly
+      with CDN-based hosting and static deployment platforms, making it
+      suitable for global access scenarios.
+    </p>
+  </div>
+</section>
+
+<!-- Tech -->
+<section>
+  <h2>Technologies Used</h2>
+  <div class="card">
+    <span class="tag">Unity</span>
+    <span class="tag">WebGL</span>
+    <span class="tag">C#</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">HTML / CSS</span>
+    <span class="tag">Cloudflare CDN</span>
+  </div>
+</section>
+
+<!-- Outcome -->
+<section>
+  <h2>Outcome</h2>
+  <div class="card">
+    <p>
+      The framework has been used as a foundation for multiple WebGL-based
+      projects, reducing setup time and improving consistency across builds.
+    </p>
+    <p>
+      By standardizing the WebGL workflow and deployment process, the framework
+      helped teams focus on product features rather than repeatedly solving
+      platform-level issues.
+    </p>
+  </div>
+</section>
+
+<!-- Media -->
+<section>
+  <h2>Demo / Media</h2>
+  <div class="card">
+    <p>
+      Live demos and project-specific builds can be integrated on top of this
+      framework depending on the product. Media content is intentionally kept
+      optional to ensure the framework remains adaptable and lightweight.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer style="text-align:center;color:var(--muted);font-size:13px;padding:40px 0;">
+© 2025 Zhongliang Min
+</footer>
+
+</body>
+</html>
