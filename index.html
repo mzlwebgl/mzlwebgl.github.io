@@ -180,18 +180,20 @@ footer{
     I value clarity, maintainability, and practical delivery.
   </p>
   <div class="actions">
+    
     <a class="btn primary" href="#projects">View Projects</a>
+    
       <a class="btn"
      href="https://cdn.minzl.com/WebGL/Home/data/Zhongliang_Min_Resume.pdf"
      target="_blank"
      rel="noopener">
     Preview Resume
   </a>
-      <a class="btn"
-     href="https://cdn.minzl.com/WebGL/Home/data/Zhongliang_Min_Resume.pdf"
-     download="Zhongliang_Min_Resume.pdf">
-    Download Resume (PDF)
-  </a>
+
+    <a class="btn primary" href="javascript:void(0)" id="downloadResumeBtn">
+  Download Resume (PDF)
+</a>
+
   </div>
 </section>
 
@@ -374,5 +376,56 @@ footer{
 </footer>
 
 </main>
+
+  <script>
+(function () {
+  const RESUME_URL =
+    'https://cdn.minzl.com/WebGL/Home/data/Zhongliang_Min_Resume.pdf';
+  const FILE_NAME = 'Zhongliang_Min_Resume.pdf';
+
+  const btn = document.getElementById('downloadResumeBtn');
+
+  if (!btn) return;
+
+  btn.addEventListener('click', async function () {
+    try {
+      btn.classList.add('loading');
+      btn.textContent = 'Downloading...';
+
+      const response = await fetch(RESUME_URL, {
+        mode: 'cors',
+        credentials: 'omit',
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch resume');
+      }
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = FILE_NAME;
+      a.style.display = 'none';
+
+      document.body.appendChild(a);
+      a.click();
+
+      // 清理
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      console.error(err);
+      alert('Resume download failed. Please try again later.');
+    } finally {
+      btn.classList.remove('loading');
+      btn.textContent = 'Download Resume (PDF)';
+    }
+  });
+})();
+</script>
+  
 </body>
 </html>
