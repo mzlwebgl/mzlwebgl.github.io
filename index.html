@@ -174,9 +174,10 @@ footer{
   <h1>Zhongliang Min</h1>
   <div class="role">C# / Unity Engineer</div>
   <p>
-    I focus on building reliable interactive systems using C#, Unity, and WebGL.
-My work spans client-side development, WebGL development and deployment, API gateway development, and production-ready AR projects.
-I value clarity, maintainability, and real-world delivery.
+    I build reliable interactive systems with C#, Unity, and WebGL.
+    My work covers client development, Unity WebGL build and deployment,
+    backend integration, and AR applications.
+    I value clarity, maintainability, and practical delivery.
   </p>
   <div class="actions">
     <a class="btn primary" href="#projects">View Projects</a>
@@ -189,103 +190,124 @@ I value clarity, maintainability, and real-world delivery.
 <section>
 <h2>Core Focus</h2>
 <div class="grid">
-  <div class="card">
-    <h3>C# System Development</h3>
-    <p>TCP-based network communication and protocol design,
-ASP.NET Core RESTful APIs and WebSocket services,
-.NET Core system tooling,
-and serial communication for hardware integration.</p>
-    <div class="tags">
-      <span class="tag">C#</span><span class="tag">TCP</span><span class="tag">ASP.NET Core</span><span class="tag">WebSocket</span><span class="tag">.NET Core</span><span class="tag">Serial Port</span>
-    </div>
-  </div>
-  <div class="card">
-    <h3>Unity Client Development</h3>
-    <p>Unity client-side development for games and general interactive applications,
-with reusable, structured, and maintainable client architectures.
-Experience includes cross-platform development (WebGL / Android / iOS / Windows),
-Unity Editor tooling and extensions,
-and commercial-grade combat systems covering state machines (FSM),
-animation systems, skills, buffs, projectile and AOE mechanics, and damage processing.</p>
-    <div class="tags">
-      <span class="tag">Unity</span><span class="tag">Client Framework</span><span class="tag">Game Systems</span>
-    </div>
-  </div>
-  <div class="card">
-    <h3>Unity WebGL</h3>
-    <p>Custom Unity WebGL templates and project architecture,
-with performance optimization across loading and runtime stages.
-Development of custom JavaScript ↔ Unity bidirectional communication (JS Bridge),
-and CDN-based deployment and distribution for WebGL builds.</p>
-    <div class="tags">
-      <span class="tag">WebGL</span><span class="tag">JS Bridge</span><span class="tag">CDN Deployment</span>
-    </div>
-  </div>
-
-<div class="card">
-  <h3>Backend & Cloud Architecture</h3>
-  <p>
-  Backend infrastructure built on Cloudflare Workers with edge computing,
-  featuring a custom enterprise-grade API gateway for multi-project routing,
-  authentication, global middleware, and unified response handling.
-  </p>
-  <p>
-  Supabase (PostgreSQL, Auth, REST) is used as the core business data layer,
-  with Cloudflare R2 for static assets and uploads,
-  combined with Cloudflare Global CDN for worldwide caching and distribution.
-  </p>
-  <p>
-  APIs are executed at the edge, while static resources are served from CDN edge caches.
-  Client-side caching strategies (IndexedDB / LocalStorage) are applied to improve
-  WebGL startup and loading performance globally.
-  </p>
-  <div class="tags">
-    <span class="tag">Cloudflare Workers</span><span class="tag">API Gateway</span><span class="tag">Supabase</span><span class="tag">CDN</span>
-  </div>
-</div>
-
-<div class="card">
-  <h3>AI-Related Systems & Interaction Features</h3>
-  <p>
-  Integration and management of common AI services using Cloudflare Workers,
-  including authentication, token handling, conversational APIs,
-  streaming responses, and speech- and image-related capabilities
-  for practical product use.
-  </p>
-  <p>
-  Implementation of AI-driven conversational and voice interaction features
-  at the application level, with support for streaming interactions,
-  contextual state handling, and basic role-based behavior control
-  to improve usability and interaction flow.
-  </p>
-  <p>
-  Combination of AI capabilities with existing 3D character
-  and interaction systems for use in interactive products
-  and digital character scenarios.
-  </p>
-  <div class="tags">
-    <span class="tag">AI Integration</span><span class="tag">Cloudflare Workers</span><span class="tag">Interactive Systems</span>
-  </div>
-</div>
   
   <div class="card">
-  <h3>AR Project Development</h3>
-  <p>
-  Practical AR project development based on mainstream AR frameworks,
-  with experience using AR Foundation together with ARKit, ARCore,
-  and Vuforia for cross-platform AR applications.
-  </p>
-  <p>
-  Hands-on experience with spatial tracking, image recognition,
-  plane detection, model recognition, and multi-target tracking,
-  enabling stable alignment of virtual content with real-world environments
-  in real product scenarios.
-  </p>
-  <div class="tags">
-    <span class="tag">AR</span><span class="tag">Unity</span><span class="tag">AR Foundation</span><span class="tag">Vuforia</span>
+    <h3>C# System Development</h3>
+    <p>
+      Network communication and protocol-based system development using TCP,
+      ASP.NET Core RESTful APIs and WebSocket services,
+      .NET Core system tooling,
+      and serial communication for hardware integration.
+    </p>
+    <div class="tags">
+      <span class="tag">C#</span>
+      <span class="tag">TCP</span>
+      <span class="tag">ASP.NET Core</span>
+      <span class="tag">WebSocket</span>
+      <span class="tag">.NET Core</span>
+    </div>
   </div>
-</div>
 
+  <div class="card">
+    <h3>Unity Client Development</h3>
+    <p>
+      Unity client-side development for games and general interactive applications,
+      focusing on reusable, structured, and maintainable client architectures.
+      Experience includes cross-platform development (WebGL / Android / iOS / Windows),
+      Unity Editor tooling and extensions,
+      and gameplay systems such as state machines (FSM),
+      animation systems, skills, buffs, projectile and AOE mechanics,
+      and damage processing.
+    </p>
+    <div class="tags">
+      <span class="tag">Unity</span>
+      <span class="tag">Client Architecture</span>
+      <span class="tag">Game Systems</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Unity WebGL</h3>
+    <p>
+      Custom Unity WebGL templates and project architecture,
+      with performance optimization across loading and runtime stages.
+      Integration of JavaScript and Unity communication (JS Bridge),
+      and CDN-based deployment for WebGL builds.
+    </p>
+    <div class="tags">
+      <span class="tag">WebGL</span>
+      <span class="tag">JS Bridge</span>
+      <span class="tag">CDN</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Backend & Cloud Architecture</h3>
+    <p>
+      Backend infrastructure built on Cloudflare Workers,
+      providing a unified API layer for routing, authentication,
+      middleware handling, and consistent response management.
+    </p>
+    <p>
+      Supabase is used for core data and authentication services,
+      with Cloudflare R2 and Cloudflare CDN supporting static assets
+      and global distribution.
+    </p>
+    <p>
+      Edge execution and client-side caching are applied
+      to improve WebGL loading and runtime performance.
+    </p>
+    <div class="tags">
+      <span class="tag">Cloudflare Workers</span>
+      <span class="tag">API Integration</span>
+      <span class="tag">Supabase</span>
+      <span class="tag">CDN</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>AI Integration & Interaction</h3>
+    <p>
+      Integration of common AI services through Cloudflare Workers,
+      including authentication, token handling,
+      conversational APIs, streaming responses,
+      and speech-related capabilities for application use.
+    </p>
+    <p>
+      Implementation of AI-driven conversational and voice interaction features
+      at the application level, with support for streaming interactions,
+      contextual state handling, and basic role-based behavior control.
+    </p>
+    <p>
+      Combination of AI capabilities with existing 3D character
+      and interaction systems for use in interactive products.
+    </p>
+    <div class="tags">
+      <span class="tag">AI Integration</span>
+      <span class="tag">Cloudflare Workers</span>
+      <span class="tag">Interactive Systems</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>AR Project Development</h3>
+    <p>
+      Practical AR project development based on mainstream AR frameworks,
+      using AR Foundation together with ARKit, ARCore,
+      and Vuforia for cross-platform AR applications.
+    </p>
+    <p>
+      Experience with common AR tracking and detection workflows,
+      enabling stable alignment of virtual content
+      with real-world environments in product scenarios.
+    </p>
+    <div class="tags">
+      <span class="tag">AR</span>
+      <span class="tag">Unity</span>
+      <span class="tag">AR Foundation</span>
+    </div>
+  </div>
+  
 </div>
 </section>
 
