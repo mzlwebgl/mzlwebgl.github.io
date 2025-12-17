@@ -1,5 +1,5 @@
 (function () {
-  const ENDPOINT = "https://api.minzl.com/v1/analytics/home";
+  const ENDPOINT = "https://api.minzl.com/v1/collect/home";
 
   function getOrCreate(key, gen) {
     let v = localStorage.getItem(key);
@@ -85,3 +85,4 @@
     true
   );
 })();
+
