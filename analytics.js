@@ -20,7 +20,8 @@
         "Content-Type": "application/json"
       },
       body: JSON.stringify(payload),
-      keepalive: true
+      keepalive: true,
+      credentials: "omit"
     }).catch(() => {});
   }
 
@@ -85,3 +86,4 @@
     true
   );
 })();
+
