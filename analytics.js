@@ -14,20 +14,14 @@
   const session_id = getOrCreate("mzl_session_id", () => crypto.randomUUID());
 
   function send(payload) {
-    const data = JSON.stringify(payload);
-    try {
-      navigator.sendBeacon(
-        ENDPOINT,
-        new Blob([data], { type: "application/json" })
-      );
-    } catch {
-      fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: data,
-        keepalive: true
-      }).catch(() => { });
-    }
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(() => {});
   }
 
   const enterTime = Date.now();
@@ -55,7 +49,9 @@
 
   window.addEventListener("pagehide", reportDwell);
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") reportDwell();
+    if (document.visibilityState === "hidden") {
+      reportDwell();
+    }
   });
 
   document.addEventListener(
@@ -64,12 +60,16 @@
       const a = e.target.closest("a");
       if (!a) return;
 
-      let module = "link";
       const href = a.getAttribute("href") || "";
+      let module = "link";
 
-      if (href.startsWith("#")) module = "anchor";
-      else if (href.includes("/projects/")) module = "project.card";
-      else if (href.endsWith(".pdf")) module = "download.pdf";
+      if (href.startsWith("#")) {
+        module = "anchor";
+      } else if (href.includes("/projects/")) {
+        module = "project.card";
+      } else if (href.endsWith(".pdf")) {
+        module = "download.pdf";
+      }
 
       send({
         event_type: "click",
@@ -85,4 +85,3 @@
     true
   );
 })();
-
