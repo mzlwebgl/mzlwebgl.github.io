@@ -13,12 +13,27 @@
   const visitor_id = getOrCreate("mzl_visitor_id", () => crypto.randomUUID());
   const session_id = getOrCreate("mzl_session_id", () => crypto.randomUUID());
 
+  const page_view_id = crypto.randomUUID();
+
+  function safeUrl(u) {
+    return u.href;
+  }
+
+  function basePayload() {
+    return {
+      visitor_id,
+      session_id,
+      page_view_id,
+      page_url: safeUrl(new URL(location.href)),
+      page_path: location.pathname,
+      referrer: document.referrer || ""
+    };
+  }
+
   function send(payload) {
     fetch(ENDPOINT, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
       keepalive: true,
       credentials: "omit"
@@ -26,34 +41,63 @@
   }
 
   const enterTime = Date.now();
+  let viewSent = false;
 
-  send({
-    event_type: "page_view",
-    visitor_id,
-    session_id,
-    page_url: location.href,
-    page_path: location.pathname,
-    referrer: document.referrer || ""
-  });
+  window.addEventListener("load", () => {
+    if (viewSent) return;
+    viewSent = true;
 
-  function reportDwell() {
     send({
       event_type: "page_view",
-      visitor_id,
-      session_id,
-      page_url: location.href,
-      page_path: location.pathname,
-      referrer: document.referrer || "",
-      dwell_time_ms: Date.now() - enterTime
+      ...basePayload(),
+      title: document.title || ""
+    });
+  });
+
+  let exitSent = false;
+
+  function reportExitOnce(reason) {
+    if (exitSent) return;
+    exitSent = true;
+
+    send({
+      event_type: "page_exit",
+      ...basePayload(),
+      dwell_time_ms: Date.now() - enterTime,
+      reason: reason || ""
     });
   }
 
-  window.addEventListener("pagehide", reportDwell);
+  window.addEventListener("pagehide", () => reportExitOnce("pagehide"));
+
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") {
-      reportDwell();
+      reportExitOnce("visibility_hidden");
     }
   });
+
+  function classifyClick(a) {
+    const tagged = a.getAttribute("data-track");
+    if (tagged) return tagged;
+
+    const hrefAttr = a.getAttribute("href") || "";
+    const href = a.href || "";
+
+    if (hrefAttr.startsWith("#")) return null;
+
+    if (hrefAttr.startsWith("mailto:") || hrefAttr.startsWith("tel:")) return "contact";
+
+    if (hrefAttr.toLowerCase().endsWith(".pdf") || href.toLowerCase().includes(".pdf")) return "download.pdf";
+
+    if (href.includes("/projects/")) return "project.card";
+
+    try {
+      const u = new URL(href, location.href);
+      if (u.origin !== location.origin) return "outbound";
+    } catch (_) {}
+
+    return null;
+  }
 
   document.addEventListener(
     "click",
@@ -61,23 +105,15 @@
       const a = e.target.closest("a");
       if (!a) return;
 
-      const href = a.getAttribute("href") || "";
-      let module = "link";
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-      if (href.startsWith("#")) {
-        module = "anchor";
-      } else if (href.includes("/projects/")) {
-        module = "project.card";
-      } else if (href.endsWith(".pdf")) {
-        module = "download.pdf";
-      }
+      const module = classifyClick(a);
+      if (!module) return;
 
       send({
         event_type: "click",
-        visitor_id,
-        session_id,
-        page_url: location.href,
-        page_path: location.pathname,
+        ...basePayload(),
         module,
         label: (a.textContent || "").trim().slice(0, 100),
         target_url: a.href
@@ -86,4 +122,3 @@
     true
   );
 })();
-
