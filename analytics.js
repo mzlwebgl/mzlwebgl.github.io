@@ -65,12 +65,6 @@
 
   window.addEventListener("pagehide", reportExitOnce);
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") {
-      reportExitOnce();
-    }
-  });
-
   function classifyClick(a) {
     const tagged = a.getAttribute("data-track");
     if (tagged) return tagged;
@@ -113,5 +107,6 @@
     true
   );
 })();
+
 
 
