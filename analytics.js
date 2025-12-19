@@ -1,9 +1,9 @@
-if (window.__mzl_analytics_initialized__) {
-  return;
-}
-window.__mzl_analytics_initialized__ = true;
-
 (function () {
+    if (window.__mzl_analytics_initialized__) {
+    return;
+  }
+  window.__mzl_analytics_initialized__ = true;
+  
   const ENDPOINT = "https://api.minzl.com/v1/collect/home";
 
   function getOrCreate(key, gen) {
@@ -113,4 +113,5 @@ window.__mzl_analytics_initialized__ = true;
     true
   );
 })();
+
 
