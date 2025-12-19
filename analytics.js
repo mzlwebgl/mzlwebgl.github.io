@@ -13,23 +13,6 @@
   const visitor_id = getOrCreate("mzl_visitor_id", () => crypto.randomUUID());
   const session_id = getOrCreate("mzl_session_id", () => crypto.randomUUID());
 
-  const page_view_id = crypto.randomUUID();
-
-  function safeUrl(u) {
-    return u.href;
-  }
-
-  function basePayload() {
-    return {
-      visitor_id,
-      session_id,
-      page_view_id,
-      page_url: safeUrl(new URL(location.href)),
-      page_path: location.pathname,
-      referrer: document.referrer || ""
-    };
-  }
-
   function send(payload) {
     fetch(ENDPOINT, {
       method: "POST",
@@ -42,6 +25,17 @@
 
   const enterTime = Date.now();
   let viewSent = false;
+  let exitSent = false;
+
+  function basePayload() {
+    return {
+      visitor_id,
+      session_id,
+      page_url: location.href,
+      page_path: location.pathname,
+      referrer: document.referrer || ""
+    };
+  }
 
   window.addEventListener("load", () => {
     if (viewSent) return;
@@ -49,30 +43,26 @@
 
     send({
       event_type: "page_view",
-      ...basePayload(),
-      title: document.title || ""
+      ...basePayload()
     });
   });
 
-  let exitSent = false;
-
-  function reportExitOnce(reason) {
+  function reportExitOnce() {
     if (exitSent) return;
     exitSent = true;
 
     send({
       event_type: "page_exit",
       ...basePayload(),
-      dwell_time_ms: Date.now() - enterTime,
-      reason: reason || ""
+      dwell_time_ms: Date.now() - enterTime
     });
   }
 
-  window.addEventListener("pagehide", () => reportExitOnce("pagehide"));
+  window.addEventListener("pagehide", reportExitOnce);
 
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") {
-      reportExitOnce("visibility_hidden");
+      reportExitOnce();
     }
   });
 
@@ -84,11 +74,8 @@
     const href = a.href || "";
 
     if (hrefAttr.startsWith("#")) return null;
-
     if (hrefAttr.startsWith("mailto:") || hrefAttr.startsWith("tel:")) return "contact";
-
     if (hrefAttr.toLowerCase().endsWith(".pdf") || href.toLowerCase().includes(".pdf")) return "download.pdf";
-
     if (href.includes("/projects/")) return "project.card";
 
     try {
@@ -104,7 +91,6 @@
     (e) => {
       const a = e.target.closest("a");
       if (!a) return;
-
       if (e.button !== 0) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
