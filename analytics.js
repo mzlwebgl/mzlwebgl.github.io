@@ -1,3 +1,8 @@
+if (window.__mzl_analytics_initialized__) {
+  return;
+}
+window.__mzl_analytics_initialized__ = true;
+
 (function () {
   const ENDPOINT = "https://api.minzl.com/v1/collect/home";
 
@@ -108,3 +113,4 @@
     true
   );
 })();
+
