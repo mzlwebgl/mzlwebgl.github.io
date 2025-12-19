@@ -1,9 +1,7 @@
 (function () {
-    if (window.__mzl_analytics_initialized__) {
-    return;
-  }
+  if (window.__mzl_analytics_initialized__) return;
   window.__mzl_analytics_initialized__ = true;
-  
+
   const ENDPOINT = "https://api.minzl.com/v1/collect/home";
 
   function getOrCreate(key, gen) {
@@ -45,7 +43,6 @@
   window.addEventListener("load", () => {
     if (viewSent) return;
     viewSent = true;
-
     send({
       event_type: "page_view",
       ...basePayload()
@@ -53,9 +50,8 @@
   });
 
   function reportExitOnce() {
-    if (exitSent) return;
+    if (exitSent || !viewSent) return;
     exitSent = true;
-
     send({
       event_type: "page_exit",
       ...basePayload(),
@@ -63,7 +59,13 @@
     });
   }
 
-  window.addEventListener("beforeunload", reportExitOnce);
+  window.addEventListener("pagehide", reportExitOnce);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      reportExitOnce();
+    }
+  });
 
   function classifyClick(a) {
     const tagged = a.getAttribute("data-track");
@@ -107,8 +109,3 @@
     true
   );
 })();
-
-
-
-
-
