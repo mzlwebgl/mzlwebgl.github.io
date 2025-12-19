@@ -63,7 +63,7 @@
     });
   }
 
-  window.addEventListener("beforeunload", reportExitOnce);//window.addEventListener("pagehide", reportExitOnce);
+  window.addEventListener("beforeunload", reportExitOnce);
 
   function classifyClick(a) {
     const tagged = a.getAttribute("data-track");
@@ -107,6 +107,7 @@
     true
   );
 })();
+
 
 
 
