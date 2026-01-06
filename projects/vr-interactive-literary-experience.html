@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>VR Interactive Literary Experience | Zhongliang Min</title>
+
+  <meta name="description"
+    content="A VR-based interactive literary reading project adapted from Chinese and international literature, combining immersive storytelling, reasoning-based interaction, and public exhibition design." />
+
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --panel: #111622;
+      --line: #1e2433;
+      --text: #e6e9f0;
+      --muted: #9aa3b2;
+      --accent: #7aa2ff;
+      --radius: 14px;
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 14, 20, 0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header .inner {
+      max-width: var(--max);
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    /* ---------- Layout ---------- */
+    main {
+      max-width: var(--max);
+      margin: auto;
+      padding: 28px 18px 80px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      letter-spacing: -0.4px;
+    }
+
+    p {
+      margin: 8px 0 0;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    /* ---------- Video ---------- */
+    .video-section {
+      margin-top: 26px;
+    }
+
+    .video-box {
+      width: 100%;
+      background: #000;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .video-box video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+
+    /* ---------- Description ---------- */
+    .desc {
+      margin-top: 28px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 40px 0;
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false">
+
+  <!-- Header -->
+  <header>
+    <div class="inner">
+      <strong>
+        <a href="../index.html">Zhongliang Min</a>
+      </strong>
+      <nav>
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://cdn.minzl.com/WebGL/Home/data/Zhongliang_Min_Resume.pdf" target="_blank">
+          Resume
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Title -->
+    <section>
+      <h1>VR Interactive Literary Experience</h1>
+      <p>
+        A VR-based interactive reading project adapted from Chinese and international
+        literary works, combining immersive storytelling, reasoning-driven interaction,
+        and experiential learning.
+      </p>
+    </section>
+
+    <!-- Video -->
+    <section class="video-section">
+      <div class="video-box">
+        <video controls preload="metadata" controlsList="nodownload" playsinline>
+          <source src="https://cdn.minzl.com/WebGL/Home/videos/vr-interactive-literature-demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <!-- Description -->
+    <section class="desc">
+      <div class="card">
+        <p>
+          This project is a VR-based interactive literary reading experience adapted
+          from both Chinese and international literature. It explores how immersive
+          environments and embodied interaction can transform traditional reading
+          into an experiential and reasoning-oriented narrative form.
+        </p>
+
+        <p>
+          The system was designed and developed as a public-facing VR experience,
+          covering full system architecture, narrative structure, and interaction
+          design. It has been exhibited at multiple venues, including science museums
+          and VR conferences, as an educational and cultural demonstration project.
+        </p>
+
+        <p>
+          At the beginning of the experience, users enter a panoramic virtual world
+          where ancient mythical creatures move freely through surreal environments.
+          A custom-built head-tracking interaction system allows users to select
+          storylines through natural head movement. After selection, users engage in
+          immersive narrative scenarios such as 360-degree theatrical scenes, mythical
+          creature riding, underwater exploration, environmental interaction, and
+          open-ended spatial exploration, emphasizing narrative logic and experiential
+          learning rather than passive observation.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Zhongliang Min
+  </footer>
+
+</body>
+
+</html>
